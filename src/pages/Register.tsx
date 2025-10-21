@@ -1,23 +1,23 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowLeft } from 'lucide-react';
-import { StatusBar } from '../components/StatusBar';
-import { api } from '../services/api';
-import { toast } from 'sonner';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
+import { StatusBar } from "../components/StatusBar";
+import { api } from "../services/api";
+import { toast } from "sonner";
 
 export function Register() {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      toast.error('As senhas não coincidem');
+      toast.error("As senhas não coincidem");
       return;
     }
 
@@ -26,12 +26,12 @@ export function Register() {
     try {
       const response = await api.register(name, email, password);
       if (response.success) {
-        toast.success('Cadastro realizado com sucesso!');
-        localStorage.setItem('user', JSON.stringify(response.data));
-        navigate('/dashboard');
+        toast.success("Cadastro realizado com sucesso!");
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate("/dashboard");
       }
     } catch (error) {
-      toast.error('Erro ao criar cadastro. Tente novamente.');
+      toast.error("Erro ao criar cadastro. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -40,10 +40,10 @@ export function Register() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <StatusBar />
-      
+
       <div className="flex-1 px-6 py-8">
         <button
-          onClick={() => navigate('/')}
+          onClick={() => navigate("/")}
           className="mb-8 flex items-center gap-2 text-[#27693A]"
         >
           <ArrowLeft className="w-6 h-6" />
@@ -122,14 +122,14 @@ export function Register() {
             className="w-full h-[61px] bg-[#27693a] rounded-[16px] flex items-center justify-center hover:bg-[#1f5230] transition-colors disabled:opacity-50"
           >
             <span className="font-['Nunito_Sans',sans-serif] font-light text-[22px] text-[#f3f3f3]">
-              {loading ? 'Criando conta...' : 'Criar cadastro'}
+              {loading ? "Criando conta..." : "Criar cadastro"}
             </span>
           </button>
 
           <div className="text-center">
             <button
               type="button"
-              onClick={() => navigate('/login')}
+              onClick={() => navigate("/login")}
               className="font-['Nunito_Sans',sans-serif] text-[15px] text-[#27693A]"
             >
               Já tem uma conta? Entre
