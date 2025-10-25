@@ -1,22 +1,23 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Toaster } from 'sonner';
-import { Home } from './pages/Home';
-import { Login } from './pages/Login';
-import { Register } from './pages/Register';
-import { Dashboard } from './pages/Dashboard';
-import { Marketplace } from './pages/Marketplace';
-import { ContractDetails } from './pages/ContractDetails';
-import { Contracts } from './pages/Contracts';
-import { Profile } from './pages/Profile';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { Toaster } from "sonner";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/Login";
+import { Register } from "./pages/Register";
+import { Registerpj } from "./pages/Registerpj"; 
+import { Dashboard } from "./pages/Dashboard";
+import { Marketplace } from "./pages/Marketplace";
+import { ContractDetails } from "./pages/ContractDetails";
+import { Contracts } from "./pages/Contracts";
+import { Profile } from "./pages/Profile";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
-  const user = localStorage.getItem('user');
-  
+  const user = localStorage.getItem("user");
+
   if (!user) {
     return <Navigate to="/login" replace />;
   }
-  
+
   return <>{children}</>;
 }
 
@@ -29,7 +30,8 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          
+          <Route path="/registerpj" element={<Registerpj />} /> {/* 👈 Nova rota */}
+
           {/* Protected Routes */}
           <Route
             path="/dashboard"
@@ -71,11 +73,11 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          
+
           {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        
+
         <Toaster position="top-center" richColors />
       </div>
     </BrowserRouter>

@@ -5,9 +5,10 @@ import { StatusBar } from "../components/StatusBar";
 import { api } from "../services/api";
 import { toast } from "sonner";
 
-export function Register() {
+export function Registerpj() {
   const navigate = useNavigate();
-  const [name, setName] = useState("");
+  const [companyName, setCompanyName] = useState("");
+  const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,14 +25,20 @@ export function Register() {
     setLoading(true);
 
     try {
-      const response = await api.register(name, email, password);
+      // Simulação — substitua por sua função real futuramente
+      // Exemplo: const response = await api.registerCompany(companyName, cnpj, email, password);
+      const response = {
+        success: true,
+        data: { companyName, cnpj, email },
+      };
+
       if (response.success) {
-        toast.success("Cadastro realizado com sucesso!");
-        localStorage.setItem("user", JSON.stringify(response.data));
+        toast.success("Cadastro de empresa realizado com sucesso!");
+        localStorage.setItem("company", JSON.stringify(response.data));
         navigate("/dashboard");
       }
     } catch (error) {
-      toast.error("Erro ao criar cadastro. Tente novamente.");
+      toast.error("Erro ao criar cadastro da empresa. Tente novamente.");
     } finally {
       setLoading(false);
     }
@@ -51,37 +58,51 @@ export function Register() {
         </button>
 
         <h1 className="font-['Raleway',sans-serif] font-bold text-[28px] text-[#202020] mb-2">
-          Criar uma conta
+          Criar conta empresarial
         </h1>
         <p className="font-['Nunito_Sans',sans-serif] text-[16px] text-[#202020] opacity-70 mb-8">
-          Preencha seus dados para começar
+          Preencha os dados da sua empresa para começar
         </p>
 
         <form onSubmit={handleRegister} className="space-y-6">
           <div>
             <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
-              Nome completo
+              Nome da empresa
             </label>
             <input
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={companyName}
+              onChange={(e) => setCompanyName(e.target.value)}
               className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
-              placeholder="Seu nome"
+              placeholder="Nome da empresa"
               required
             />
           </div>
 
           <div>
             <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
-              Email
+              CNPJ
+            </label>
+            <input
+              type="text"
+              value={cnpj}
+              onChange={(e) => setCnpj(e.target.value)}
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
+              placeholder="00.000.000/0000-00"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
+              Email corporativo
             </label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
-              placeholder="seu@email.com"
+              placeholder="empresa@email.com"
               required
             />
           </div>
@@ -122,7 +143,7 @@ export function Register() {
             className="w-full h-[61px] bg-[#27693a] rounded-[16px] flex items-center justify-center hover:bg-[#1f5230] transition-colors disabled:opacity-50"
           >
             <span className="font-['Nunito_Sans',sans-serif] font-light text-[22px] text-[#f3f3f3]">
-              {loading ? "Criando conta..." : "Criar cadastro"}
+              {loading ? "Criando conta..." : "Criar cadastro da empresa"}
             </span>
           </button>
 
@@ -133,14 +154,6 @@ export function Register() {
               className="font-['Nunito_Sans',sans-serif] text-[15px] text-[#27693A]"
             >
               Já tem uma conta? Entre
-            </button>
-            <p></p>
-            <button
-              type="button"
-              onClick={() => navigate("/RegisterPJ")}
-              className="font-['Nunito_Sans',sans-serif] text-[15px] text-[#27693A]"
-            >
-              Você é uma empresa? Cadastre-se aqui
             </button>
           </div>
         </form>
