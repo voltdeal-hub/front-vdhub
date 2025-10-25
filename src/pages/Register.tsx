@@ -134,6 +134,14 @@ export function Register() {
             >
               Já tem uma conta? Entre
             </button>
+            <p></p>
+            <button
+              type="button"
+              onClick={() => navigate("/RegisterPJ")}
+              className="font-['Nunito_Sans',sans-serif] text-[15px] text-[#27693A]"
+            >
+              Você é uma empresa? Cadastre-se aqui
+            </button>
           </div>
         </form>
       </div>
