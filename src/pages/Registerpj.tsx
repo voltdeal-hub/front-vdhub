@@ -8,6 +8,7 @@ import { toast } from "sonner";
 export function Registerpj() {
   const navigate = useNavigate();
   const [companyName, setCompanyName] = useState("");
+  const [responsibleName, setResponsibleName] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -29,7 +30,7 @@ export function Registerpj() {
       // Exemplo: const response = await api.registerCompany(companyName, cnpj, email, password);
       const response = {
         success: true,
-        data: { companyName, cnpj, email },
+        data: { companyName, responsibleName, cnpj, email },
       };
 
       if (response.success) {
@@ -75,6 +76,20 @@ export function Registerpj() {
               onChange={(e) => setCompanyName(e.target.value)}
               className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
               placeholder="Nome da empresa"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
+              Nome do responsável
+            </label>
+            <input
+              type="text"
+              value={responsibleName}
+              onChange={(e) => setResponsibleName(e.target.value)}
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
+              placeholder="Nome completo do responsável"
               required
             />
           </div>
