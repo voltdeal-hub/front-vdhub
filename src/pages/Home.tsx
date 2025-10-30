@@ -31,7 +31,7 @@ export function Home() {
                   <img 
                     src={VoltDealLogoImg} 
                     alt="Logo VoltDeal" 
-                    className="w-full h-full object-contain p-8" 
+                    className="w-full h-full object-contain p-8 rounded-full" 
                   />
                 </div>
 
