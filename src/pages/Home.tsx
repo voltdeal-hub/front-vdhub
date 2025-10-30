@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { StatusBar } from '../components/StatusBar';
-import imgLogo from '../imports/figma:asset/e13aa6c4000b62a8f82fe399772a66e150f3fd70.png';
+import VoltDealLogoImg from '../assets/logo-voltdeal.png';
 
 export function Home() {
   const navigate = useNavigate();
@@ -9,36 +9,45 @@ export function Home() {
     <div className="min-h-screen bg-white flex flex-col">
       <StatusBar />
       
+      {/* (Logo no topo, Tagline no centro, Buttons embaixo) */}
       <div className="flex-1 flex flex-col items-center justify-between px-6 py-12">
+        
+        {/* Centraliza o Logo e o Tagline na tela */}
         <div className="flex-1 flex flex-col items-center justify-center">
-          {/* Logo */}
+          
+          {/* Logo Container (Bolha Branca Externa) */}
           <div className="relative w-[215px] h-[215px] mb-8">
+            
+            {/* Fundo Branco e Sombra */}
             <div className="absolute inset-0 bg-white rounded-full shadow-[0px_3px_8px_0px_rgba(0,0,0,0.16)]" />
+            
             <div className="absolute inset-0 flex items-center justify-center">
+              
+              {/* Círculo Interno Verde */}
               <div className="w-[191px] h-[191px] relative">
+                
                 <div className="absolute inset-0 bg-[#27693A] rounded-full flex items-center justify-center">
-                  <svg className="w-24 h-24" viewBox="0 0 100 100" fill="none">
-                    <path
-                      d="M70 25L45 55L55 55L30 75L55 45L45 45L70 25Z"
-                      fill="white"
-                    />
-                    <path
-                      d="M30 20C25 25 22 35 30 45C35 40 40 35 45 30C35 25 30 20 30 20Z"
-                      fill="#9DEB44"
-                    />
-                  </svg>
+                  
+                  <img 
+                    src={VoltDealLogoImg} 
+                    alt="Logo VoltDeal" 
+                    className="w-full h-full object-contain p-8 rounded-full" 
+                  />
                 </div>
+
                 <p className="absolute bottom-4 left-0 right-0 text-center font-bold text-2xl text-[#202020]">
                   VoltDeal
                 </p>
+
               </div>
             </div>
           </div>
-
+          
           {/* Tagline */}
           <p className="text-[19px] leading-[33px] text-center text-[#202020] max-w-[249px] font-['Nunito_Sans',sans-serif] font-light mb-16">
             O primeiro marketplace de energia do Brasil
           </p>
+          
         </div>
 
         {/* Buttons */}
