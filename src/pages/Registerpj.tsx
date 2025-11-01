@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StatusBar } from "../components/StatusBar";
+
 import { api } from "../services/api";
 import { toast } from "sonner";
 
@@ -47,7 +47,7 @@ export function Registerpj() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <StatusBar />
+      
 
       <div className="flex-1 px-6 py-8">
         <button

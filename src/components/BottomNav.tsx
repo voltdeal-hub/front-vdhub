@@ -77,10 +77,7 @@ export function BottomNav() {
           </button>
         </div>
 
-        {/* Home indicator for iOS */}
-        <div className="flex justify-center pb-2">
-          <div className="w-[134px] h-[5px] bg-black rounded-full" />
-        </div>
+        
       </div>
     </div>
   );

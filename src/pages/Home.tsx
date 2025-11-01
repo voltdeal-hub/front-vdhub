@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom';
-import { StatusBar } from '../components/StatusBar';
 import VoltDealLogoImg from '../assets/logo-voltdeal.png';
 
 export function Home() {
@@ -7,7 +6,7 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <StatusBar />
+      
       
       {/* (Logo no topo, Tagline no centro, Buttons embaixo) */}
       <div className="flex-1 flex flex-col items-center justify-between px-6 py-12">
@@ -76,10 +75,6 @@ export function Home() {
           </button>
         </div>
 
-        {/* Home indicator */}
-        <div className="flex justify-center mt-4">
-          <div className="w-[134px] h-[5px] bg-black rounded-full" />
-        </div>
       </div>
     </div>
   );
