@@ -9,6 +9,8 @@ import { Marketplace } from "./pages/Marketplace";
 import { ContractDetails } from "./pages/ContractDetails";
 import { Contracts } from "./pages/Contracts";
 import { Profile } from "./pages/Profile";
+import { Settings } from "./pages/Settings";
+import { Notifications } from "./pages/Notifications";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -30,7 +32,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/registerpj" element={<Registerpj />} /> {/* 👈 Nova rota */}
+          <Route path="/registerpj" element={<Registerpj />} />
 
           {/* Protected Routes */}
           <Route
@@ -70,6 +72,23 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notifications"
+            element={
+              <ProtectedRoute>
+                <Notifications />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             }
           />

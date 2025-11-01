@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Settings, Bell, ChevronLeft, ChevronRight } from 'lucide-react';
-import { StatusBar } from '../components/StatusBar';
 import { BottomNav } from '../components/BottomNav';
 import { api } from '../services/api';
 import type { DashboardStats } from '../types';
@@ -46,7 +45,7 @@ export function Dashboard() {
 
   return (
     <div className="min-h-screen bg-white pb-[84px]">
-      <StatusBar />
+      
       
       {/* Header */}
       <div className="px-6 py-6 flex items-center justify-between">
@@ -62,15 +61,18 @@ export function Dashboard() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="relative w-[35px] h-[35px] bg-[#f9f9f9] rounded-full flex items-center justify-center">
-            <Bell className="w-5 h-5" />
-            <div className="absolute top-0 right-0 w-[8px] h-[8px] bg-[#ECA61B] rounded-full border-2 border-white" />
-          </button>
           <button
-            onClick={() => navigate('/settings')}
+            onClick={() => navigate("/notifications")}
             className="w-[35px] h-[35px] bg-[#f9f9f9] rounded-full flex items-center justify-center"
           >
-            <Settings className="w-5 h-5" />
+            <Bell className="w-5 h-5 text-[#27693A]" />
+          </button>
+
+          <button
+            onClick={() => navigate("/settings")}
+            className="w-[35px] h-[35px] bg-[#f9f9f9] rounded-full flex items-center justify-center"
+          >
+            <Settings className="w-5 h-5 text-[#27693A]" />
           </button>
         </div>
       </div>
@@ -223,7 +225,7 @@ export function Dashboard() {
       {/* CTA Button */}
       <div className="px-6">
         <button
-          onClick={() => navigate('/marketplace')}
+          onClick={() => navigate('/contracts')}
           className="w-full h-[40px] bg-[#27693a] rounded-[9px] flex items-center justify-center hover:bg-[#1f5230] transition-colors"
         >
           <span className="font-['Nunito_Sans',sans-serif] font-light text-[16px] text-[#f3f3f3]">
@@ -235,4 +237,4 @@ export function Dashboard() {
       <BottomNav />
     </div>
   );
-}
+} 

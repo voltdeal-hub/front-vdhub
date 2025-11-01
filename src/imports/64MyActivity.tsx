@@ -474,21 +474,7 @@ function BarsTimeBlack() {
   );
 }
 
-function BarsStatusBarLightStatusBar() {
-  return (
-    <div className="absolute h-[44px] left-0 overflow-clip top-0 w-[375px]" data-name="Bars/Status Bar/Light Status Bar">
-      <div className="absolute inset-0" data-name="Background">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
-          <g id="Background"></g>
-        </svg>
-      </div>
-      <Battery />
-      <Wifi1 />
-      <CellularConnection1 />
-      <BarsTimeBlack />
-    </div>
-  );
-}
+
 
 function ChatNow() {
   return (
@@ -857,7 +843,6 @@ export default function Component64MyActivity() {
       <Ordered />
       <Recieved />
       <ToRecieve />
-      <BarsStatusBarLightStatusBar />
       <ChatNow />
       <Header />
       <BottomBar1 />

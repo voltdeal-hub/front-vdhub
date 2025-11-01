@@ -179,21 +179,7 @@ function BarsTimeBlack() {
   );
 }
 
-function BarsStatusBarLightStatusBar() {
-  return (
-    <div className="absolute h-[44px] left-0 overflow-clip top-0 w-[375px]" data-name="Bars/Status Bar/Light Status Bar">
-      <div className="absolute inset-0" data-name="Background">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
-          <g id="Background"></g>
-        </svg>
-      </div>
-      <Battery />
-      <Wifi1 />
-      <CellularConnection1 />
-      <BarsTimeBlack />
-    </div>
-  );
-}
+
 
 function Button1() {
   return (
@@ -214,7 +200,7 @@ export default function Component01TelaInicial() {
         O primeiro marketplace de energia do Brasil
       </p>
       <AlreadyHaveAnAccount />
-      <BarsStatusBarLightStatusBar />
+      
       <div className="absolute inset-[186px_80px_420px_80px]" data-name="Ellipse">
         <div className="absolute inset-[-2.43%_-3.72%_-5.34%_-3.72%]">
           <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 231 222">
