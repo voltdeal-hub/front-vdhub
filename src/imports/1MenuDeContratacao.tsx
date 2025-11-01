@@ -378,22 +378,7 @@ function BarsTimeBlack() {
   );
 }
 
-function BarsStatusBarLightStatusBar() {
-  return (
-    <div className="absolute h-[44px] left-[-10px] overflow-clip top-[-6px] w-[375px]" data-name="Bars/Status Bar/Light Status Bar">
-      <div className="absolute inset-0" data-name="Background">
-        <svg className="block size-full" fill="none" preserveAspectRatio="none" viewBox="0 0 32 32">
-          <g id="Background"></g>
-        </svg>
-      </div>
-      <Battery />
-      <Wifi1 />
-      <CellularConnection />
-      <CellularConnection1 />
-      <BarsTimeBlack />
-    </div>
-  );
-}
+
 
 function Button() {
   return (
@@ -819,7 +804,6 @@ export default function Component1MenuDeContratacao() {
       <p className="absolute font-['Raleway:Bold',_sans-serif] font-bold leading-[normal] left-[41.07%] right-[39.73%] text-[22px] text-black text-nowrap top-[calc(50%-45px)] tracking-[-0.22px] whitespace-pre">Buscar</p>
       <EmptyCart />
       <Amount />
-      <BarsStatusBarLightStatusBar />
       <p className="absolute font-['Raleway:Bold',_sans-serif] font-bold leading-[36px] left-[23px] text-[#202020] text-[28px] text-nowrap top-[59px] tracking-[-0.28px] whitespace-pre">Contrate energia</p>
       <ShippingAddress />
       <Frame />

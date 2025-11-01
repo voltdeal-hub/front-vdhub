@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Star, Heart } from 'lucide-react';
-import { StatusBar } from '../components/StatusBar';
 import { api } from '../services/api';
 import { toast } from 'sonner';
 import type { EnergyContract } from '../types';
@@ -103,7 +102,7 @@ export function ContractDetails() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <StatusBar />
+  
       
       <div className="flex-1 px-6 py-8">
         <button

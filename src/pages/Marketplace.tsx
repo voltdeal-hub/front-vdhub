@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Star, Edit, ShoppingBag, Heart } from 'lucide-react';
-import { StatusBar } from '../components/StatusBar';
 import { BottomNav } from '../components/BottomNav';
 import { api } from '../services/api';
 import { toast } from 'sonner';
@@ -49,7 +48,7 @@ export function Marketplace() {
 
   return (
     <div className="min-h-screen bg-white pb-[84px]">
-      <StatusBar />
+      
       
       {/* Header */}
       <div className="px-6 py-6">
@@ -78,7 +77,7 @@ export function Marketplace() {
       {/* Search */}
       <div className="px-6 mb-8">
         <div className="relative">
-          <div className="w-full h-[134px] bg-white rounded-full shadow-[0px_3px_8px_0px_rgba(0,0,0,0.16)] flex items-center justify-center mb-4">
+          <div className="w-full h-[105px] bg-white rounded-full shadow-[0px_3px_8px_0px_rgba(0,0,0,0.16)] flex items-center justify-center mb-4">
             <Search className="w-16 h-16 text-[#27693A]" />
           </div>
           <h2 className="font-['Raleway',sans-serif] font-bold text-[22px] text-center text-black">

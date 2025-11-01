@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft } from "lucide-react";
-import { StatusBar } from "../components/StatusBar";
 import { api } from "../services/api";
 import { toast } from "sonner";
 
@@ -12,6 +11,8 @@ export function Register() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [cpf, setCpf] = useState("");
+
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,7 +40,7 @@ export function Register() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <StatusBar />
+     
 
       <div className="flex-1 px-6 py-8">
         <button
@@ -71,6 +72,22 @@ export function Register() {
               required
             />
           </div>
+
+          <div>
+            <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
+              CPF
+            </label>
+            <input
+              type="text"
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
+              placeholder="000.000.000-00"
+              maxLength={14} // 11 números + 3 pontos + 1 traço
+              required
+            />
+          </div>
+
 
           <div>
             <label className="block font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-2">
