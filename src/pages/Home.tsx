@@ -52,7 +52,7 @@ export function Home() {
         {/* Buttons */}
         <div className="w-full max-w-[335px] space-y-6">
           <button
-            onClick={() => navigate('/register')}
+            onClick={() => navigate('/registerpj')}
             className="w-full h-[61px] bg-[#27693a] rounded-[16px] flex items-center justify-center hover:bg-[#1f5230] transition-colors"
           >
             <span className="font-['Nunito_Sans',sans-serif] font-light text-[22px] leading-[31px] text-[#f3f3f3]">

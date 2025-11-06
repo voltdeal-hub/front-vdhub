@@ -1,3 +1,33 @@
+import React from 'react';
+import { BottomNav } from "../components/BottomNav";
+
+export function Marketplace() {
+  return (
+    <div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
+        
+      <h1 className="font-['Raleway',sans-serif] font-bold text-2xl text-center text-[#202020] mb-8">
+        Área de Busca
+      </h1>
+
+      <div
+        className="py-12 px-6 rounded-lg text-center w-full max-w-sm"
+        style={{
+          backgroundColor: "#f1f8e9",
+          border: "1px solid #a5d6a7",
+          color: "#27693A",
+        }}
+      >
+        <p className="font-bold text-lg">⚠️ EM DESENVOLVIMENTO ⚠️</p>
+      </div>
+
+      <BottomNav />
+    </div>
+  );
+}
+
+
+
+/*
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Star, Edit, ShoppingBag, Heart } from 'lucide-react';
@@ -50,13 +80,13 @@ export function Marketplace() {
     <div className="min-h-screen bg-white pb-[84px]">
       
       
-      {/* Header */}
+      {/* Header *
       <div className="px-6 py-6">
         <h1 className="font-['Raleway',sans-serif] font-bold text-[28px] text-[#202020] mb-4">
           Contrate energia
         </h1>
 
-        {/* Address */}
+        {/* Address *
         <div className="bg-[#f9f9f9] rounded-[10px] p-4 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] mb-6">
           <div className="flex items-start justify-between">
             <div className="flex-1">
@@ -74,7 +104,7 @@ export function Marketplace() {
         </div>
       </div>
 
-      {/* Search */}
+      {/* Search *
       <div className="px-6 mb-8">
         <div className="relative">
           <div className="w-full h-[105px] bg-white rounded-full shadow-[0px_3px_8px_0px_rgba(0,0,0,0.16)] flex items-center justify-center mb-4">
@@ -96,7 +126,7 @@ export function Marketplace() {
         </div>
       </div>
 
-      {/* Popular energies */}
+      {/* Popular energies *
       <div className="px-6">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-['Raleway',sans-serif] font-bold text-[22px] text-black">
@@ -120,12 +150,12 @@ export function Marketplace() {
                 className="bg-white rounded-[9px] shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] p-4"
               >
                 <div className="flex gap-4">
-                  {/* Provider logo placeholder */}
+                  {/* Provider logo placeholder *
                   <div className="w-[117px] h-[111px] bg-gray-200 rounded-[13px] flex items-center justify-center flex-shrink-0">
                     <div className="w-12 h-12 bg-[#27693A] rounded-full" />
                   </div>
 
-                  {/* Content */}
+                  {/* Content *
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
@@ -174,7 +204,7 @@ export function Marketplace() {
         )}
       </div>
 
-      {/* Total */}
+      {/* Total *
       <div className="fixed bottom-[84px] left-0 right-0 bg-[#f9f9f9] h-[60px] px-6 flex items-center justify-between shadow-[0px_-1px_1px_0px_rgba(0,0,0,0.1)]">
         <div>
           <p className="font-['Raleway',sans-serif] font-extrabold text-[20px] text-black">
@@ -195,3 +225,4 @@ export function Marketplace() {
     </div>
   );
 }
+*/
