@@ -1,4 +1,4 @@
-import { Home, MessageCircle, Lightbulb, FileText, User } from 'lucide-react';
+import { Home, Search, Lightbulb, FileText, User } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 export function BottomNav() {
@@ -28,7 +28,7 @@ export function BottomNav() {
             onClick={() => navigate('/marketplace')}
             className="flex flex-col items-center justify-center gap-1 relative"
           >
-            <MessageCircle
+            <Search
               className={`w-6 h-6 ${isActive('/marketplace') ? 'stroke-[#27693A]' : 'stroke-black'}`}
               strokeWidth={2}
             />
@@ -38,14 +38,14 @@ export function BottomNav() {
           </button>
 
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/simulation')}
             className="flex flex-col items-center justify-center gap-1 relative"
           >
             <Lightbulb
-              className={`w-6 h-6 ${isActive('/dashboard') ? 'stroke-[#27693A]' : 'stroke-black'}`}
+              className={`w-6 h-6 ${isActive('/simulation') ? 'stroke-[#27693A]' : 'stroke-black'}`}
               strokeWidth={2}
             />
-            {isActive('/dashboard') && (
+            {isActive('/simulation') && (
               <div className="absolute bottom-0 w-9 h-1 bg-[#27693A] rounded-full" />
             )}
           </button>
