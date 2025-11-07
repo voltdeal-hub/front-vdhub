@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, Star, Edit, ShoppingBag, Heart } from 'lucide-react';
-import { BottomNav } from '../components/BottomNav';
-import { api } from '../services/api';
+import { BottomNav } from '../components/BottomNav'; // Mantendo o caminho relativo original
+import { api } from '../services/api'; // Mantendo o caminho relativo original
 import { toast } from 'sonner';
 import type { EnergyContract } from '../types';
 
@@ -47,57 +47,54 @@ export function Marketplace() {
   );
 
   return (
-    <div className="min-h-screen bg-white pb-[84px]">
+    // 1. Container principal: ocupa 100% da altura e é flexível na coluna
+    <div className="h-screen flex flex-col bg-white overflow-hidden">
       
-      
-      {/* Header */}
-      <div className="px-6 py-6">
-        <h1 className="font-['Raleway',sans-serif] font-bold text-[28px] text-[#202020] mb-4">
-          Contrate energia
-        </h1>
+      {/* 2. Área do Header e Busca (Conteúdo Fixo no Topo) - flex-shrink-0 garante que não encolha */}
+      <div className="flex-shrink-0">
+        <div className="px-6 py-6">
+          <h1 className="font-['Raleway',sans-serif] font-bold text-[28px] text-[#202020] mb-4">
+            Contrate energia
+          </h1>
 
-        {/* Address */}
-        <div className="bg-[#f9f9f9] rounded-[10px] p-4 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] mb-6">
-          <div className="flex items-start justify-between">
-            <div className="flex-1">
-              <p className="font-['Raleway',sans-serif] font-bold text-[14px] text-[#202020] mb-2">
-                Seu endereço:
-              </p>
-              <p className="font-['Nunito_Sans',sans-serif] text-[10px] leading-[15px] text-black">
-                {user.address || 'Avenida, Cais do Apolo, 77, Recife - PE, 50030-220'}
-              </p>
+          <div className="bg-[#f9f9f9] rounded-[10px] p-4 shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] mb-6">
+            <div className="flex items-start justify-between">
+              <div className="flex-1">
+                <p className="font-['Raleway',sans-serif] font-bold text-[14px] text-[#202020] mb-2">
+                  Seu endereço:
+                </p>
+                <p className="font-['Nunito_Sans',sans-serif] text-[10px] leading-[15px] text-black">
+                  {user.address || 'Avenida, Cais do Apolo, 77, Recife - PE, 50030-220'}
+                </p>
+              </div>
+              <button className="w-[30px] h-[30px] bg-[#27693A] rounded-full flex items-center justify-center">
+                <Edit className="w-4 h-4 text-white" />
+              </button>
             </div>
-            <button className="w-[30px] h-[30px] bg-[#27693A] rounded-full flex items-center justify-center">
-              <Edit className="w-4 h-4 text-white" />
-            </button>
+          </div>
+        </div>
+
+        <div className="px-6 mb-4">
+          <div className="relative">
+            <h2 className="font-['Raleway',sans-serif] font-bold text-[22px] text-center text-black">
+              Buscar
+            </h2>
+          </div>
+
+          <div className="mt-4">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Buscar energia..."
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A]"
+            />
           </div>
         </div>
       </div>
 
-      {/* Search */}
-      <div className="px-6 mb-8">
-        <div className="relative">
-          <div className="w-full h-[105px] bg-white rounded-full shadow-[0px_3px_8px_0px_rgba(0,0,0,0.16)] flex items-center justify-center mb-4">
-            <Search className="w-16 h-16 text-[#27693A]" />
-          </div>
-          <h2 className="font-['Raleway',sans-serif] font-bold text-[22px] text-center text-black">
-            Buscar
-          </h2>
-        </div>
-
-        <div className="mt-4">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Buscar energia..."
-            className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A]"
-          />
-        </div>
-      </div>
-
-      {/* Popular energies */}
-      <div className="px-6">
+      {/* 3. Área de Listagem (Conteúdo Dinâmico, Ocupa espaço restante e é ROLÁVEL) */}
+      <div className="flex-1 overflow-y-auto px-6 pb-[150px]">
         <div className="flex items-center justify-between mb-4">
           <h2 className="font-['Raleway',sans-serif] font-bold text-[22px] text-black">
             Energias populares
@@ -120,12 +117,10 @@ export function Marketplace() {
                 className="bg-white rounded-[9px] shadow-[0px_5px_10px_0px_rgba(0,0,0,0.1)] p-4"
               >
                 <div className="flex gap-4">
-                  {/* Provider logo placeholder */}
                   <div className="w-[117px] h-[111px] bg-gray-200 rounded-[13px] flex items-center justify-center flex-shrink-0">
                     <div className="w-12 h-12 bg-[#27693A] rounded-full" />
                   </div>
 
-                  {/* Content */}
                   <div className="flex-1">
                     <div className="flex items-start justify-between mb-2">
                       <div className="flex-1">
@@ -174,22 +169,7 @@ export function Marketplace() {
         )}
       </div>
 
-      {/* Total */}
-      <div className="fixed bottom-[84px] left-0 right-0 bg-[#f9f9f9] h-[60px] px-6 flex items-center justify-between shadow-[0px_-1px_1px_0px_rgba(0,0,0,0.1)]">
-        <div>
-          <p className="font-['Raleway',sans-serif] font-extrabold text-[20px] text-black">
-            Total
-          </p>
-          <p className="font-['Raleway',sans-serif] font-bold text-[18px] text-[#202020]">
-            R$0,00
-          </p>
-        </div>
-        <button className="bg-[#27693a] rounded-[11px] px-8 py-3 hover:bg-[#1f5230] transition-colors">
-          <span className="font-['Nunito_Sans',sans-serif] font-bold text-[16px] text-white">
-            Contratar
-          </span>
-        </button>
-      </div>
+      
 
       <BottomNav />
     </div>

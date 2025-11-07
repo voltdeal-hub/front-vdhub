@@ -4,13 +4,14 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Registerpj } from "./pages/Registerpj"; 
-import { Dashboard } from "./pages/Dashboard";
+import { Home_app } from "./pages/Home_app";
 import { Marketplace } from "./pages/Marketplace";
 import { ContractDetails } from "./pages/ContractDetails";
 import { Contracts } from "./pages/Contracts";
 import { Profile } from "./pages/Profile";
 import { Settings } from "./pages/Settings";
 import { Notifications } from "./pages/Notifications";
+import { Simulation } from "./pages/Simulation";
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -39,7 +40,15 @@ export default function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Dashboard />
+                <Home_app /> {/* <-- Agora usa a tela correta */}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/simulation"
+            element={
+              <ProtectedRoute>
+                <Simulation />
               </ProtectedRoute>
             }
           />
@@ -83,7 +92,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/settings"
             element={
