@@ -4,7 +4,7 @@ import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Registerpj } from "./pages/Registerpj"; 
-import { Dashboard } from "./pages/Dashboard";
+import { Home_app } from "./pages/Home_app";
 import { Marketplace } from "./pages/Marketplace";
 import { ContractDetails } from "./pages/ContractDetails";
 import { Contracts } from "./pages/Contracts";
@@ -40,7 +40,7 @@ export default function App() {
             path="/dashboard"
             element={
               <ProtectedRoute>
-                <Contracts />
+                <Home_app /> {/* <-- Agora usa a tela correta */}
               </ProtectedRoute>
             }
           />
@@ -48,7 +48,7 @@ export default function App() {
             path="/simulation"
             element={
               <ProtectedRoute>
-                < Simulation />
+                <Simulation />
               </ProtectedRoute>
             }
           />
@@ -92,7 +92,6 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-
           <Route
             path="/settings"
             element={

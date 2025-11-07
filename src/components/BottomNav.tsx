@@ -11,19 +11,21 @@ export function BottomNav() {
     <div className="fixed bottom-0 left-0 right-0 bg-white shadow-[0px_-1px_1px_0px_rgba(0,0,0,0.16)] z-50">
       <div className="max-w-md mx-auto">
         <div className="flex items-center justify-around h-[84px] px-6">
+          {/* HOME */}
           <button
-            onClick={() => navigate('/')}
+            onClick={() => navigate('/dashboard')}
             className="flex flex-col items-center justify-center gap-1 relative"
           >
             <Home
-              className={`w-6 h-6 ${isActive('/') ? 'stroke-[#27693A]' : 'stroke-black'}`}
+              className={`w-6 h-6 ${isActive('/dashboard') ? 'stroke-[#27693A]' : 'stroke-black'}`}
               strokeWidth={2}
             />
-            {isActive('/') && (
+            {isActive('/dashboard') && (
               <div className="absolute bottom-0 w-9 h-1 bg-[#27693A] rounded-full" />
             )}
           </button>
 
+          {/* MARKETPLACE */}
           <button
             onClick={() => navigate('/marketplace')}
             className="flex flex-col items-center justify-center gap-1 relative"
@@ -37,6 +39,7 @@ export function BottomNav() {
             )}
           </button>
 
+          {/* SIMULATION */}
           <button
             onClick={() => navigate('/simulation')}
             className="flex flex-col items-center justify-center gap-1 relative"
@@ -50,6 +53,7 @@ export function BottomNav() {
             )}
           </button>
 
+          {/* CONTRACTS */}
           <button
             onClick={() => navigate('/contracts')}
             className="flex flex-col items-center justify-center gap-1 relative"
@@ -63,6 +67,7 @@ export function BottomNav() {
             )}
           </button>
 
+          {/* PROFILE */}
           <button
             onClick={() => navigate('/profile')}
             className="flex flex-col items-center justify-center gap-1 relative"
@@ -76,8 +81,6 @@ export function BottomNav() {
             )}
           </button>
         </div>
-
-        
       </div>
     </div>
   );

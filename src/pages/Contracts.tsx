@@ -54,7 +54,7 @@ export function Contracts() {
       </div>
 
       <div className="px-6 py-6 flex items-center justify-between">
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <div className="w-[40px] h-[40px] bg-gray-300 rounded-full overflow-hidden">
             <div className="w-full h-full bg-gradient-to-br from-[#27693A] to-[#1f5230]" />
           </div>
