@@ -16,15 +16,19 @@ export function Login() {
     setLoading(true);
 
     try {
-      const response = await api.login(email, password);
-      if (response.success) {
-        toast.success('Login realizado com sucesso!');
-        // Salvar usuário no localStorage/context
-        localStorage.setItem('user', JSON.stringify(response.data));
-        navigate('/dashboard');
-      }
-    } catch (error) {
-      toast.error('Erro ao fazer login. Tente novamente.');
+      // 🔥 AGORA CHAMA A API REAL
+      const data = await api.login(email, password);
+
+      // data = { id, nome, email, ... }
+      toast.success('Login realizado com sucesso!');
+
+      // 🔥 Salva user completo
+      localStorage.setItem('user', JSON.stringify(data));
+
+      // 🔥 Navega para home (dashboard ou home_app)
+      navigate('/dashboard');
+    } catch (error: any) {
+      toast.error(error?.message || 'Erro ao fazer login.');
     } finally {
       setLoading(false);
     }
@@ -32,9 +36,8 @@ export function Login() {
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      
-      
       <div className="flex-1 px-6 py-8">
+
         <button
           onClick={() => navigate('/')}
           className="mb-8 flex items-center gap-2 text-[#27693A]"
@@ -59,7 +62,7 @@ export function Login() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A]"
               placeholder="seu@email.com"
               required
             />
@@ -73,7 +76,7 @@ export function Login() {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A] focus:border-transparent"
+              className="w-full h-[50px] px-4 border border-gray-300 rounded-[10px] focus:outline-none focus:ring-2 focus:ring-[#27693A]"
               placeholder="••••••••"
               required
             />

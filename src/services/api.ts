@@ -1,188 +1,273 @@
 import type { User, EnergyContract, DashboardStats, ApiResponse } from '../types';
 
-// Configuração da API
-const API_BASE_URL = 'https://api.voltdealhub.com';
+const API_BASE_URL = 'https://back-vdhub.onrender.com';
 
-// Mock data para desenvolvimento
-const mockContracts: EnergyContract[] = [
-  {
-    id: '1',
-    providerId: 'neo-1',
-    providerName: 'NeoEnergia',
-    providerLogo: '',
-    type: 'hydro',
-    price: 12.00,
-    power: '50KW/h',
-    rating: 4.8,
-    description: 'Maior grupo privado do setor elétrico brasileiro',
-    isFavorite: true
-  },
-  {
-    id: '2',
-    providerId: 'setta-1',
-    providerName: 'Setta Energia',
-    providerLogo: 'https://tse3.mm.bing.net/th/id/OIP.GILzVPUxg_wiVs_H4sO4DQAAAA?rs=1&pid=ImgDetMain&o=7&rm=3',
-    type: 'solar',
-    price: 17.00,
-    power: '75KW/h',
-    rating: 4.9,
-    description: 'Top 1 em vendas em recife, a Setta preza pelo feedback do consumidor',
-    isFavorite: false
-  },
-  {
-    id: '3',
-    providerId: 'setta-1',
-    providerName: 'Setta Energia',
-    providerLogo: '',
-    type: 'solar',
-    price: 17.00,
-    power: '75KW/h',
-    rating: 4.9,
-    description: 'Top 1 em vendas em recife, a Setta preza pelo feedback do consumidor',
-    isFavorite: false
-  },
-  {
-    id: '4',
-    providerId: 'setta-1',
-    providerName: 'Setta Energia',
-    providerLogo: '',
-    type: 'solar',
-    price: 17.00,
-    power: '75KW/h',
-    rating: 4.9,
-    description: 'Top 1 em vendas em recife, a Setta preza pelo feedback do consumidor',
-    isFavorite: false
-  },{
-    id: '5',
-    providerId: 'setta-1',
-    providerName: 'Setta Energia',
-    providerLogo: '',
-    type: 'solar',
-    price: 17.00,
-    power: '75KW/h',
-    rating: 4.9,
-    description: 'Top 1 em vendas em recife, a Setta preza pelo feedback do consumidor',
-    isFavorite: false
-  }
-];
+async function request<T>(path: string, options: RequestInit = {}): Promise<ApiResponse<T>> {
+  try {
+    const resp = await fetch(`${API_BASE_URL}${path}`, {
+      headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+      ...options
+    });
 
-const mockStats: DashboardStats = {
-  activeContracts: 12,
-  totalInvested: 20000,
-  favorites: 5,
-  totalPower: '25KW/h',
-  energyBreakdown: {
-    wind: 30,
-    solar: 25,
-    hydro: 35,
-    other: 10
-  }
-};
+    const text = await resp.text();
+    const parsed = text ? JSON.parse(text) : null;
 
-// Helper para simular delay de API
-const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
-
-// API Service
-export const api = {
-  // Auth
-  async login(email: string, password: string): Promise<ApiResponse<User>> {
-    await delay(1000);
-    return {
-      success: true,
-      data: {
-        id: '1',
-        name: 'Gabriel Dias',
-        email,
-        address: 'Avenida, Cais do Apolo, 77, Recife - PE, 50030-220'
-      }
-    };
-  },
-
-  async register(name: string, email: string, password: string): Promise<ApiResponse<User>> {
-    await delay(1000);
-    return {
-      success: true,
-      data: {
-        id: '1',
-        name,
-        email
-      }
-    };
-  },
-
-  // Contracts
-  async getContracts(): Promise<ApiResponse<EnergyContract[]>> {
-    await delay(800);
-    return {
-      success: true,
-      data: mockContracts
-    };
-  },
-
-  async getContractById(id: string): Promise<ApiResponse<EnergyContract>> {
-    await delay(500);
-    const contract = mockContracts.find(c => c.id === id);
-    if (!contract) {
+    if (!resp.ok) {
       return {
         success: false,
-        data: {} as EnergyContract,
-        message: 'Contrato não encontrado'
+        data: {} as T,
+        message: parsed?.detail || parsed?.message || `Erro HTTP ${resp.status}`
       };
     }
-    return {
-      success: true,
-      data: contract
-    };
-  },
 
-  async toggleFavorite(id: string): Promise<ApiResponse<boolean>> {
-    await delay(300);
+    return { success: true, data: parsed };
+  } catch (err: any) {
     return {
-      success: true,
-      data: true
-    };
-  },
-
-  async createContract(contractId: string): Promise<ApiResponse<string>> {
-    await delay(1000);
-    return {
-      success: true,
-      data: contractId,
-      message: 'Contrato criado com sucesso!'
-    };
-  },
-
-  // Dashboard
-  async getDashboardStats(): Promise<ApiResponse<DashboardStats>> {
-    await delay(600);
-    return {
-      success: true,
-      data: mockStats
-    };
-  },
-
-  // User
-  async updateAddress(address: string): Promise<ApiResponse<boolean>> {
-    await delay(500);
-    return {
-      success: true,
-      data: true,
-      message: 'Endereço atualizado com sucesso!'
+      success: false,
+      data: {} as T,
+      message: err.message || 'Erro de conexão'
     };
   }
-};
+}
 
-// Para quando a API real estiver disponível:
-/*
 export const api = {
-  async login(email: string, password: string): Promise<ApiResponse<User>> {
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+  // ============================================================
+  // 🔹 LOGIN
+  // ============================================================
+  async login(email: string, senha: string): Promise<User> {
+    const resp = await fetch(`${API_BASE_URL}/usuario/login`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email, senha })
     });
-    return response.json();
+
+    if (!resp.ok) {
+      const error = await resp.json().catch(() => null);
+      throw new Error(error?.message || error?.detail || 'Erro ao fazer login.');
+    }
+
+    return resp.json();
   },
-  // ... outras funções com fetch real
+
+  // ============================================================
+  // 🔹 CADASTRO
+  // ============================================================
+  async registerCompany(
+  nome_empresa: string,
+  nome_responsavel: string,
+  cnpj: string,
+  email: string,
+  senha: string
+): Promise<ApiResponse<User>> {
+  const response = await request<User>('/usuario/cadastro', {
+    method: 'POST',
+    body: JSON.stringify({
+      nome_empresa,
+      nome_responsavel,
+      cnpj,
+      email,
+      senha
+    })
+  });
+
+  return response;
+},
+
+
+  // ============================================================
+  // 🔹 LISTAR CONTRATOS DO USUÁRIO 
+  // ============================================================
+  async getContracts(userId: number): Promise<ApiResponse<EnergyContract[]>> {
+    const response = await request<any[]>(`/contrato/listar/${userId}`);
+
+    if (!response.success || !response.data) {
+      return { success: false, data: [], message: response.message };
+    }
+
+    // Adaptando os dados do backend → formato do frontend
+    const converted: EnergyContract[] = response.data.map((c) => ({
+      id: String(c.id),
+      providerId: String(c.id_usuario),
+      providerName: c.nome_fornecedor,
+      providerLogo: '',
+      type: c.fonte_energia,
+      price: c.preco_kwh,
+      power: `${c.prazo_vigencia_meses} meses`,
+      rating: 4.5,
+      description: c.nome_plano,
+      isFavorite: false
+    }));
+
+    return {
+      success: true,
+      data: converted
+    };
+  },
+
+  // ============================================================
+  // 🔹 BUSCAR CONTRATO POR ID
+  // ============================================================
+  async getContractById(id: number): Promise<ApiResponse<EnergyContract>> {
+    const resp = await request<any>(`/contrato/${id}`);
+    if (!resp.success || !resp.data) {
+      return { success: false, data: {} as EnergyContract, message: 'Contrato não encontrado' };
+    }
+    const c = resp.data;
+    return {
+      success: true,
+      data: {
+        id: String(c.id),
+        providerId: String(c.id_usuario),
+        providerName: c.nome_fornecedor,
+        providerLogo: '',
+        type: c.fonte_energia,
+        price: c.preco_kwh,
+        power: `${c.prazo_vigencia_meses} meses`,
+        rating: 4.5,
+        description: c.nome_plano,
+        isFavorite: false,
+        data_criacao: c.data_criacao
+      }
+    };
+  },
+
+
+
+  // ============================================================
+  // 🔹 Favorito (mock pois seu backend não tem esse endpoint)
+  // ============================================================
+  async toggleFavorite(id: string): Promise<ApiResponse<boolean>> {
+    return { success: true, data: true };
+  },
+
+  // ============================================================
+  // 🔹 Dashboard (mock)
+  // ============================================================
+  async getDashboardStats(): Promise<ApiResponse<DashboardStats>> {
+    return {
+      success: true,
+      data: {
+        activeContracts: 12,
+        totalInvested: 10000,
+        favorites: 3,
+        totalPower: '20KW/h',
+        energyBreakdown: {
+          wind: 20,
+          solar: 50,
+          hydro: 20,
+          other: 10
+        }
+      }
+    };
+  },
+
+  // ============================================================
+  // 🔹 Atualizar endereço (mock)
+  // ============================================================
+  async updateAddress(address: string): Promise<ApiResponse<boolean>> {
+    return { success: true, data: true };
+  },
+
+  // ============================================================
+  // 🔹 Get das ofertas da Home_app
+  // ============================================================
+  async getOffers(): Promise<ApiResponse<EnergyContract[]>> {
+  const response = await request<any[]>(`/oferta/`);
+
+  if (!response.success || !response.data) {
+    return { success: false, data: [], message: response.message };
+  }
+
+  // Adaptando a resposta do backend para o modelo do frontend
+  const mapped = response.data.map((o: any) => ({
+    id: String(o.id),
+    providerId: String(o.id), // NÃO EXISTE id_fornecedor
+    providerName: o.nome_fornecedor || "",
+    providerLogo: "",
+    type: o.fonte_energia || "",
+    price: o.preco_kwh || 0,
+    power: `${o.prazo_vigencia_meses} meses`,
+    rating: 4.5,
+    description: o.nome_plano || "",
+    isFavorite: false
+  }));
+
+
+
+  return {
+    success: true,
+    data: mapped
+  };
+},
+  async getOfferById(id: number): Promise<ApiResponse<EnergyContract>> {
+    const resp = await request<any>(`/oferta/${id}`);
+
+    if (!resp.success || !resp.data) {
+      return { success: false, data: {} as EnergyContract, message: 'Oferta não encontrada' };
+    }
+
+    const o = resp.data;
+
+    return {
+      success: true,
+      data: {
+        id: String(o.id),
+        providerId: String(o.id), // não existe id_fornecedor
+        providerName: o.nome_fornecedor,
+        providerLogo: '',
+        type: o.fonte_energia,
+        price: o.preco_kwh,
+        power: `${o.prazo_vigencia_meses} meses`,
+        rating: 4.5,
+        description: o.nome_plano,
+        isFavorite: false
+      }
+    };
+  },
+
+
+  // ============================================================
+  // 🔹Post pra criar novo contrato (com base nas offers da home)
+  // ============================================================
+async createContract(contract: EnergyContract, userId: number): Promise<ApiResponse<any>> {
+  const payload = {
+    id_usuario: userId,
+    nome_fornecedor: contract.providerName,
+    nome_plano: contract.description,
+    preco_kwh: contract.price,
+    fonte_energia: contract.type,
+    prazo_vigencia_meses: Number(contract.power.replace(/\D/g, "")) // extrai números
+  };
+
+  const response = await request('/contrato/', {
+    method: 'POST',
+    body: JSON.stringify(payload)
+  });
+
+  return response;
+},
+
+  // ============================================================
+  // 🔹Post pra gerar preview do contrato PDF
+  // ============================================================
+async generateContractPreview(
+  usuario: { id: number; nome_empresa: string; nome_responsavel: string; email: string; cnpj: string },
+  oferta: { id: number; nome_fornecedor: string; nome_plano: string; preco_kwh: number; fonte_energia: string; prazo_vigencia_meses: number }
+): Promise<Blob> {
+  const resp = await fetch(`${API_BASE_URL}/contrato/gerar-preview`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ usuario, oferta })
+  });
+
+  if (!resp.ok) throw new Error('Erro ao gerar contrato');
+  return resp.blob();
+}
+
+
+
+
+
 };
-*/

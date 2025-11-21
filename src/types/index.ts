@@ -19,6 +19,7 @@ export interface EnergyContract {
   rating: number;
   description: string;
   isFavorite: boolean;
+  data_criacao?: string;
 }
 
 export interface DashboardStats {

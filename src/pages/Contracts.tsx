@@ -230,7 +230,7 @@ export function Contracts() {
       {/* CTA Button */}
       <div className="px-6">
         <button
-          onClick={() => navigate('/contracts')} // O botão já aponta para /contracts, o que é OK!
+          onClick={() => navigate('/contracts_page')} // O botão já aponta para /contracts, o que é OK!
           className="w-full h-[40px] bg-[#27693a] rounded-[9px] flex items-center justify-center hover:bg-[#1f5230] transition-colors"
         >
           <span className="font-['Nunito_Sans',sans-serif] font-light text-[16px] text-[#f3f3f3]">

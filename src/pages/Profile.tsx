@@ -118,10 +118,10 @@ export function Profile() {
             <FileText className="w-5 h-5 text-[#27693A] mt-1" />
             <div>
               <p className="font-['Raleway',sans-serif] font-medium text-[14px] text-[#202020] mb-1">
-                CPF
+                CNPJ
               </p>
               <p className="font-['Nunito_Sans',sans-serif] text-[14px] text-black">
-                {user.cpf || '000.000.000-00'}
+                {user.cnpj || '00.000.000/0000-00'}
               </p>
             </div>
           </div>

@@ -12,6 +12,8 @@ import { Profile } from "./pages/Profile";
 import { Settings } from "./pages/Settings";
 import { Notifications } from "./pages/Notifications";
 import { Simulation } from "./pages/Simulation";
+import { ContractsPage } from './pages/ContractsPage';
+import { ContractDetailPage } from './pages/ContractDetailPage';
 
 // Protected Route Component
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -97,6 +99,22 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Settings />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contracts_page"
+            element={
+              <ProtectedRoute>
+                <ContractsPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/contractdetailpage/:id"
+            element={
+              <ProtectedRoute>
+                <ContractDetailPage />
               </ProtectedRoute>
             }
           />
