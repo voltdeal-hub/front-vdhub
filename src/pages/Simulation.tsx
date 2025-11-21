@@ -5,7 +5,7 @@ export function Simulation() {
     <div className="min-h-screen bg-gray-100 p-8 flex flex-col items-center">
         
       <h1 className="font-['Raleway',sans-serif] font-bold text-2xl text-center text-[#202020] mb-8">
-        Bem vindo a nossa área de simulação
+        Bem-vindo a nossa área de simulação
       </h1>
 
       <div
