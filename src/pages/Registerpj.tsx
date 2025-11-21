@@ -26,24 +26,30 @@ export function Registerpj() {
     setLoading(true);
 
     try {
-      // Simulação — substitua por sua função real futuramente
-      // Exemplo: const response = await api.registerCompany(companyName, cnpj, email, password);
-      const response = {
-        success: true,
-        data: { companyName, responsibleName, cnpj, email },
-      };
+      const response = await api.registerCompany(
+        companyName,
+        responsibleName,
+        cnpj,
+        email,
+        password
+      );
 
       if (response.success) {
-        toast.success("Cadastro de empresa realizado com sucesso!");
+        toast.success("Cadastro realizado com sucesso!");
+
+        // Armazena os dados retornados (id, nome_empresa, etc)
         localStorage.setItem("company", JSON.stringify(response.data));
-        navigate("/dashboard");
+
+        // Redireciona pra home do app
+        navigate("/Dashboard");
       }
     } catch (error) {
-      toast.error("Erro ao criar cadastro da empresa. Tente novamente.");
+      toast.error("Erro ao cadastrar empresa.");
     } finally {
       setLoading(false);
     }
-  };
+};
+
 
   return (
     <div className="min-h-screen bg-white flex flex-col">
